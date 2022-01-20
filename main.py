@@ -21,7 +21,7 @@ def search(message):
                          f'\nПроцесс может занять некоторое время, пожалуйста, подождите')
 
         L = instaloader.Instaloader()
-        L.login(nick, password)  # (login)
+        L.login(config.nick, config.password)  # (login)
 
         # NICK FROM USER
         Profile = instaloader.Profile.from_username(L.context, nickname)
