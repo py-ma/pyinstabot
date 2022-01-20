@@ -12,11 +12,9 @@ def welcome(message):
                      '\nВнимание! Действует ограничение по времени (аккаунты можно присылать раз в 10 минут)')
 @bot.message_handler(content_types=['text'])
 def search(message):
-    msg = message.text
-    if 'https://instagram.com/' and '?utm_medium=copy_link' in msg:
+    try:
+        msg = message.text
         nickname = msg
-        nickname = nickname.replace('https://instagram.com/', '')
-        nickname = nickname.replace('?utm_medium=copy_link', '')
         bot.send_message(message.chat.id, f'Анализ пользователя {nickname}'
                          f'\nПроцесс может занять некоторое время, пожалуйста, подождите')
 
@@ -41,7 +39,7 @@ def search(message):
             account = instaloader.Profile.from_username(L.context, acc)
             account.profile_pic_url
             followers_pic.append(account.profile_pic_url)
-            time.sleep(0.1)
+            # time.sleep(0.1)
         for no_pic in followers_pic:
             if "https://instagram" in no_pic:
                 followers_no_pic.append(no_pic)
@@ -63,7 +61,8 @@ def search(message):
         bot.send_message(message.chat.id, f'\nБизнес-аккаунтов: {len(check_business)}')
         time.sleep(600)
 
-    else:
+
+    except:
         bot.send_message(message.chat.id, 'Не понял! Попробуй еще раз')
 
 
