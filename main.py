@@ -8,7 +8,7 @@ bot = telebot.TeleBot(config.token)
 @bot.message_handler(commands=['start'])  # command handler for /start
 def welcome(message):
     bot.send_message(message.chat.id,
-                     'Добро пожаловать!\nОтправь мне ссылку на Instagram—аккаунт, и я пришлю тебе его анализ'
+                     'Добро пожаловать!\nОтправь мне никнейм Instagram—аккаунта, и я пришлю тебе его анализ'
                      '\nВнимание! Действует ограничение по времени (аккаунты можно присылать раз в 10 минут)')
 @bot.message_handler(content_types=['text'])
 def search(message):
